@@ -2,18 +2,33 @@ package com.mediLabo.microservicePatient.controller;
 
 import com.mediLabo.microservicePatient.model.Patient;
 import com.mediLabo.microservicePatient.service.PatientService;
-import jakarta.persistence.NamedStoredProcedureQuery;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
+
+import java.util.List;
 
 @RestController
+@RequestMapping("/api")
 public class PatientController {
-   @Autowired
-   PatientService patientService;
+    @Autowired
+    PatientService patientService;
 
-//   @RequestMapping("/patient/list")
-//    public String home() {
-//
-//   }
+    @GetMapping("/patients")
+    public List<Patient> getPatients() {
+        return patientService.getAllPatients();
+    }
+
+    @PostMapping("/person")
+    public Patient save(@RequestBody Patient patient) {
+        patientService.save(patient);
+        return patient;
+    }
+
+    @PutMapping("/person")
+    public Patient update(@RequestBody Patient updatedPatient) {
+        patientService.update(updatedPatient);
+        return updatedPatient;
+    }
+
+
 }

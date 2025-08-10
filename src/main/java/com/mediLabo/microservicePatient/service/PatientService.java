@@ -6,6 +6,7 @@ import jakarta.validation.Valid;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.Optional;
 
 @Service
 public class PatientService {
@@ -28,16 +29,27 @@ public class PatientService {
         patientRepository.save(patient);
     }
 
-    public void update(Integer id, Patient data) {
-        Patient patient = patientRepository.findById(id)
-                .orElseThrow(() -> new IllegalArgumentException("Invalid patient Id:" + id));
-        patient.setNom(data.getNom());
-        patient.setPrenom(data.getPrenom());
-        patient.setDateDeNaissance(data.getDateDeNaissance());
-        patient.setGenre(data.getGenre());
-        patient.setAdresse(data.getAdresse());
-        patient.setTelephone(data.getTelephone());
-        patientRepository.save(patient);
+    public void update(Patient updatedPatient) {
+        List<Patient> patients = getAllPatients();
+
+        Optional<Patient> existingPatientOpt = patients.stream()
+                .filter(p -> p.getPrenom().equalsIgnoreCase(updatedPatient.getPrenom())
+                        && p.getNom().equalsIgnoreCase(updatedPatient.getNom()))
+                .findFirst();
+
+        if (existingPatientOpt.isPresent()) {
+            Patient existingPerson = existingPatientOpt.get();
+            existingPerson.setNom(updatedPatient.getNom());
+            existingPerson.setPrenom(updatedPatient.getPrenom());
+            existingPerson.setDateNaissance(updatedPatient.getDateNaissance());
+            existingPerson.setGenre(updatedPatient.getGenre());
+            existingPerson.setAdresse(updatedPatient.getAdresse());
+            existingPerson.setTelephone(updatedPatient.getTelephone());
+            patientRepository.save(existingPerson);
+        }  else {
+            throw new RuntimeException("Patient non trouvée avec le prénom " + updatedPatient.getPrenom()
+                    + " et le nom " + updatedPatient.getNom());
+        }
     }
 
     public void delete(Integer id) {
