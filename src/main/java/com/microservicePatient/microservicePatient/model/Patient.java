@@ -1,4 +1,4 @@
-package com.mediLabo.microservicePatient.model;
+package com.microservicePatient.microservicePatient.model;
 
 import jakarta.persistence.*;
 import jakarta.validation.constraints.NotNull;

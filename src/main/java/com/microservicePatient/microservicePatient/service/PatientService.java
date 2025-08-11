@@ -1,7 +1,7 @@
-package com.mediLabo.microservicePatient.service;
+package com.microservicePatient.microservicePatient.service;
 
-import com.mediLabo.microservicePatient.model.Patient;
-import com.mediLabo.microservicePatient.repository.PatientRepository;
+import com.microservicePatient.microservicePatient.model.Patient;
+import com.microservicePatient.microservicePatient.repository.PatientRepository;
 import jakarta.validation.Valid;
 import org.springframework.stereotype.Service;
 

@@ -1,7 +1,7 @@
-package com.mediLabo.microservicePatient.controller;
+package com.microservicePatient.microservicePatient.controller;
 
-import com.mediLabo.microservicePatient.model.Patient;
-import com.mediLabo.microservicePatient.service.PatientService;
+import com.microservicePatient.microservicePatient.model.Patient;
+import com.microservicePatient.microservicePatient.service.PatientService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
