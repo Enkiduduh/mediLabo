@@ -1,14 +1,13 @@
-package com.microservicePatient.microservicePatient.service;
+package com.microservicePatient.service;
 
-import com.microservicePatient.microservicePatient.model.Patient;
-import com.microservicePatient.microservicePatient.repository.PatientRepository;
+import com.microservicePatient.model.Patient;
+import com.microservicePatient.repository.PatientRepository;
 import jakarta.validation.Valid;
 import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Service;
 import org.springframework.web.server.ResponseStatusException;
 
 import java.util.List;
-import java.util.Optional;
 
 @Service
 public class PatientService {

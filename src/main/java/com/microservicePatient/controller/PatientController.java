@@ -1,7 +1,7 @@
-package com.microservicePatient.microservicePatient.controller;
+package com.microservicePatient.controller;
 
-import com.microservicePatient.microservicePatient.model.Patient;
-import com.microservicePatient.microservicePatient.service.PatientService;
+import com.microservicePatient.model.Patient;
+import com.microservicePatient.service.PatientService;
 import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -20,20 +20,25 @@ public class PatientController {
         return patientService.getAllPatients();
     }
 
-    @PostMapping("/person")
+    @PostMapping("/patient")
     @ResponseStatus(HttpStatus.CREATED)
     public Patient save(@RequestBody @Valid Patient patient) {
         patientService.save(patient);
         return patient;
     }
 
-    @PutMapping("/person/{id}")
+    @GetMapping("/patients/{id}")
+    public Patient profile(@PathVariable Integer id) {
+        return patientService.findById(id);
+    }
+
+    @PutMapping("/patients/{id}")
     public Patient update(@PathVariable Integer id,@RequestBody Patient updatedPatient) {
         patientService.update(id, updatedPatient);
         return updatedPatient;
     }
 
-    @DeleteMapping("/person/{id}")
+    @DeleteMapping("/patients/{id}")
     public void delete(@PathVariable Integer id) {
         patientService.delete(id);
     }
