@@ -1,6 +1,7 @@
 package com.microservicePatient.model;
 
 import jakarta.persistence.*;
+import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.NotNull;
 import jakarta.validation.constraints.Size;
 import lombok.Data;
@@ -21,11 +22,11 @@ public class Patient {
     private Integer id;
 
     @Column(name = "nom", nullable = false)
-    @NotNull
+    @NotBlank(message = "Le nom ne peut pas être vide")
     private String nom;
 
     @Column(name = "prenom", nullable = false)
-    @NotNull
+    @NotBlank(message = "Le prénom ne peut pas être vide")
     private String prenom;
 
     @Column(name = "date_naissance", nullable = false)

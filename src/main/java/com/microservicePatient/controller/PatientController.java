@@ -20,7 +20,7 @@ public class PatientController {
         return patientService.getAllPatients();
     }
 
-    @PostMapping("/patient")
+    @PostMapping("/patients")
     @ResponseStatus(HttpStatus.CREATED)
     public Patient save(@RequestBody @Valid Patient patient) {
         patientService.save(patient);
