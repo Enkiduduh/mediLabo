@@ -78,7 +78,7 @@ public class SecurityConfig {
 
                 .formLogin(form -> form
                         .loginProcessingUrl("/api/connexion")  // POST pour traiter la soumission
-                        .usernameParameter("identifier") // <- Doit être aligné avec le front
+                        .usernameParameter("username") // <- Doit être aligné avec le front
                         .passwordParameter("password")
                         .successHandler(authenticationSuccessHandler())
                         .failureHandler(authenticationFailureHandler())

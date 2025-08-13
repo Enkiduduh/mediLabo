@@ -21,9 +21,15 @@ public class UserService implements UserDetailsService {
     @Override
     public UserDetails loadUserByUsername(String identifier) throws UsernameNotFoundException {
         System.out.println("Tentative de connexion pour: " + identifier); // Debug
-        User user = userRepository.findByEmail(identifier)
-                .orElseGet(() -> userRepository.findByUsername(identifier)
-                        .orElseThrow(() -> new UsernameNotFoundException("Utilisateur non trouvé : " + identifier)));
+
+        String id = identifier == null ? "" : identifier.trim();
+        User user = userRepository.findByEmailIgnoreCase(id)
+                .orElseGet(() -> userRepository.findByUsernameIgnoreCase(id)
+                        .orElseThrow(() -> new UsernameNotFoundException("Utilisateur non trouvé : " + id)));
+
+//        User user = userRepository.findByEmail(identifier)
+//                .orElseGet(() -> userRepository.findByUsername(identifier)
+//                        .orElseThrow(() -> new UsernameNotFoundException("Utilisateur non trouvé : " + identifier)));
 
         System.out.println("Utilisateur trouvé: " + user.getUsername()); // Debug
         System.out.println("Mot de passe encodé en BDD: " + user.getPassword()); // Debug
