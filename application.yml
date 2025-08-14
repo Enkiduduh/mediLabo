@@ -9,6 +9,8 @@ spring:
       host: localhost
       port: 6379
 
+spring.session.timeout: 30m
+
 server:
   servlet:
     session:
@@ -16,4 +18,4 @@ server:
         name: JSESSIONID
         http-only: true
         same-site: Lax
-        spring.session.timeout: 30m
+

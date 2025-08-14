@@ -46,6 +46,7 @@ public class SecurityConfig {
         return authProvider;
     }
 
+
     @Bean
     public SecurityFilterChain filterChain(HttpSecurity http, DaoAuthenticationProvider authProvider) throws Exception {
         http
